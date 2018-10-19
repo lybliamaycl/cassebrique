@@ -1,28 +1,32 @@
 
 var canvas = document.getElementById("canvas1");
 var ctx = canvas.getContext("2d");
+var jouer = document.getElementById("jouer");
 
 var maxWidth = canvas.width;
 var minWidth = 0;
 var maxHeight = canvas.height;
 var minHeight = 0;
 
-var planchex = 400;
-var planchev = 20;
 var plancheL = 100;
 var plancheH = 10;
+var planchex = canvas.width/2  - plancheL/2;
+var planchev = 20;
+
 
 var balleRad = 10;
-var balleX = canvas.height/2;
-var balleY = canvas.width/3;
-var bx = 3;
-var by = -3;
+var balleX = canvas.width/2;
+var balleY = canvas.height-50;
+var bx = 0;
+var by = 0;
 
 var lignes = 3;
 var colonnes = 6;
 var briqueH = 20;
 var briqueL = 100;
 var espace_brique = 20;
+
+var score = 0;
 
 var boucleJeu = setInterval(draw,10);
 
@@ -34,6 +38,15 @@ var briques = [];
     }
   }
 
+jouer.addEventListener('click', function(){
+  document.getElementById("jeu").style.display='block';
+  document.getElementById("accueil").style.display='none';
+});
+
+canvas.addEventListener('click', function(){
+  bx = 3;
+  by = -3;
+});
 
 function Balle(){
   /* balle */
@@ -73,6 +86,10 @@ function Briques(){
   }
 }
 
+function drawScore() {
+  document.getElementById("score").innerHTML = "Score :" +score;
+}
+
 function collisionDetection() {
   for (l = 0 ; l < lignes;++l){
     for(c = 0 ; c < colonnes ; ++c){
@@ -81,12 +98,16 @@ function collisionDetection() {
         if(balleX > b.x && balleX < b.x+briqueL && balleY > b.y && balleY < b.y+briqueH) {
           by = -by;
           b.status = 0;
+          score++;
+          if(score == colonnes*lignes) {
+              alert("YOU WIN, CONGRATULATIONS!");
+              document.location.reload();
+          }
         }
       }
     }
   }
 }
-
 
 
 /* Planche avec flèches */
@@ -107,6 +128,7 @@ function draw (){
     Balle();
     Planche();
     Briques();
+    drawScore();
     collisionDetection();
   
     if (balleX + bx > maxWidth - balleRad || balleX + bx < 10){
@@ -120,7 +142,9 @@ function draw (){
         by = -by;
       }
       else { 
-        alert("PERDU !");
+        document.getElementById("accueil").style.display='none';
+        document.getElementById("jeu").style.display='none';
+        document.getElementById("resultat").style.display='block';
         clearInterval(boucleJeu);
       }
     }

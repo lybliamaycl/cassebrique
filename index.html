@@ -3,26 +3,35 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <title>Title</title>
   </head>
   <body>
 
-    <section id="accueil">
-      bjr
+    <section id="accueil" class="container-fluid">
+      <div class="container">
+        <button id="jouer">Jouer</button>
+      </div>
     </section>
 
-    <section id="jeu">
-
-    <canvas id="canvas1" width="600" height="600"></canvas>
+    <section id="jeu" class="container-fluid">
+      <div class="container">
+        <article class="row">
+          <div class="col-md-12 text-center"><canvas id="canvas1" width="600" height="600"></canvas></div>
+          <div id="score" class="col-md-12"></div>
+        </article>
+    </div>
 
     </section>
 
    
     
 
-    <section id="resultat">
-
+    <section id="resultat" class="container-fluid">
+        <div class="container">
+          perdu
+        </div>
     </section>
 
 
