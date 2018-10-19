@@ -3,3 +3,16 @@
 #canvas1 { 
   border:solid 1px red;
 }
+
+#accueil, #jeu, #resultat{
+  display:block;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
+#jeu, #resultat{
+  display:none;
+}
