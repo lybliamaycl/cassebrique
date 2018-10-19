@@ -1,0 +1,5 @@
+@import 'reset.css';
+
+#canvas1 { 
+  border:solid 1px red;
+}
