@@ -20,11 +20,12 @@ var balleY = canvas.height-50;
 var bx = 0;
 var by = 0;
 
-var lignes = 3;
-var colonnes = 6;
+var lignes = 5;
+var colonnes = 5;
+var espace_brique = 20;
 var briqueH = 20;
 var briqueL = 100;
-var espace_brique = 20;
+
 
 var score = 0;
 
@@ -112,14 +113,16 @@ function collisionDetection() {
 
 /* Planche avec flèches */
 
-document.addEventListener("keydown", function(e){
+document.addEventListener("keydown", RL);
+document.addEventListener("keyup", RL);
+function RL(e){
   if ( e.keyCode==37 && planchex > minWidth){ 
     planchex = planchex - planchev;
   }
   else if ( e.keyCode==39 && planchex < maxWidth - plancheL){ 
     planchex = planchex + planchev;
   }
-});
+};
 
 
 
